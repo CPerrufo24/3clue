@@ -1,11 +1,21 @@
 import { OpenAI } from "openai";
 
 const client = new OpenAI({
-  apiKey: process.env.POE_API_KEY,  // Asegúrate de poner tu key en Vercel
+  apiKey: process.env.POE_API_KEY,
   baseURL: "https://api.poe.com/v1",
 });
 
 export default async function handler(req, res) {
+  // CORS headers
+  res.setHeader("Access-Control-Allow-Origin", "*"); // O especifica tu dominio: "https://tudominio.netlify.app"
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // Handle preflight request
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -18,7 +28,7 @@ export default async function handler(req, res) {
 
   try {
     const chat = await client.chat.completions.create({
-      model: "Robifito",   // tu bot en Poe
+      model: "Robifito",
       messages: [{ role: "user", content: message }],
     });
 
@@ -30,4 +40,3 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "Internal server error" });
   }
 }
-
