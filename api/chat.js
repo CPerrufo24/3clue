@@ -1,4 +1,5 @@
 import { OpenAI } from "openai";
+import { guardarEnSheet } from "../utils/guardarEnSheet.js";
 
 const client = new OpenAI({
   apiKey: process.env.POE_API_KEY,
@@ -10,7 +11,7 @@ function setCorsHeaders(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.setHeader("Access-Control-Allow-Credentials", "false"); // No se permiten credenciales con "*"
+  res.setHeader("Access-Control-Allow-Credentials", "false");
 }
 
 export default async function handler(req, res) {
@@ -35,6 +36,16 @@ export default async function handler(req, res) {
     });
 
     const reply = chat.choices[0].message.content;
+
+    // Guardar en SheetDB
+    await guardarEnSheet({
+      origen: req.headers.origin || "localhost",
+      usuario_id: "anon-" + Date.now(),
+      mensaje_usuario: message || "(usó historial)",
+      respuesta_bot: reply,
+      interacciones: "sin clics"
+    });
+
     res.status(200).json({ response: reply });
 
   } catch (error) {
