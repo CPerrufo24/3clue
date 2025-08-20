@@ -1,9 +1,9 @@
 {
-  "name": "poe-bridge",
+  "name": "3clue-chatbot-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
+  "main": "api/chat.js",
   "scripts": {},
   "dependencies": {
-    "openai": "^5.12.2"
-  }
+    "openai": "^5.12.2"}
 }

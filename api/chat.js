@@ -7,7 +7,7 @@ const client = new OpenAI({
 
 export default async function handler(req, res) {
   // CORS headers 
-  res.setHeader("Access-Control-Allow-Origin", "https://https://3clue.com"); // Cambia si usas otro dominio
+  res.setHeader("Access-Control-Allow-Origin", "https://3clue.com"); // Cambia si usas otro dominio
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
