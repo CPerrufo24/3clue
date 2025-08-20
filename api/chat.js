@@ -6,8 +6,8 @@ const client = new OpenAI({
 });
 
 export default async function handler(req, res) {
-  // CORS headers para Netlify
-  res.setHeader("Access-Control-Allow-Origin", "https://robinnovalab.netlify.app"); // Cambia si usas otro dominio
+  // CORS headers 
+  res.setHeader("Access-Control-Allow-Origin", "https://https://3clue.com"); // Cambia si usas otro dominio
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
@@ -25,10 +25,10 @@ export default async function handler(req, res) {
   const messages = history || [{ role: "user", content: message }];
 
   try {
-    console.log("Enviando a Robifito:", messages);
+    console.log("Enviando a 3Clue_Chatbot:", messages);
 
     const chat = await client.chat.completions.create({
-      model: "Robifito", // Nombre exacto del bot en Poe
+      model: "3Clue_Chatbot", // Nombre exacto del bot en Poe
       messages: messages,
     });
 
