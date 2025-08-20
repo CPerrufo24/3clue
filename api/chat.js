@@ -5,19 +5,12 @@ const client = new OpenAI({
   baseURL: "https://api.poe.com/v1",
 });
 
-// Función para configurar CORS dinámico
+// CORS abierto para todos los orígenes
 function setCorsHeaders(req, res) {
-  const allowedOrigins = [
-    "https://www.3clue.mx",
-    "https://3clue.com",
-    "http://localhost:3000"
-  ];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Credentials", "false"); // No se permiten credenciales con "*"
 }
 
 export default async function handler(req, res) {
