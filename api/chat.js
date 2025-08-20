@@ -6,7 +6,7 @@ const client = new OpenAI({
 });
 
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "https://3clue.com");
+  res.setHeader("Access-Control-Allow-Origin", "https://www.3clue.com");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
