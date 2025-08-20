@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "main": "api/chat.js",
-  "scripts": {},
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "node api/chat.js"
+  },
   "dependencies": {
-    "openai": "^5.12.2"}
+    "openai": "^5.12.2",
+    "axios": "^1.6.7"
+  }
 }
