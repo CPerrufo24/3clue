@@ -66,4 +66,3 @@ json
 }
 Agrega tu POE_API_KEY como variable de entorno
 
-¿Quieres que preparemos una versión editable de este README como plantilla para tus otros clientes? También podemos dejarlo listo para exportar como guía PDF o Notion. Tú mandas 🧩📘
